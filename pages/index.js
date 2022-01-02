@@ -11,6 +11,7 @@ import {Box, Container, Typography} from "@mui/material";
 import CompetitionItemSkeleton from "../components/CompetitionItem/skeleton";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import clsx from "clsx";
+import {setUserCompetitions, setUserCompetitionsError, setUserCompetitionsLoaded} from "../store/reducers/competition";
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,6 +50,14 @@ const Home = () => {
             dispatch(getUserCompetitions());
         }
     }, [authState.isAuth]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(setUserCompetitionsLoaded(false));
+            dispatch(setUserCompetitionsError(null));
+            dispatch(setUserCompetitions(null));
+        }
+    }, []);
 
     const outUserCompetitions = () => {
         if(competitionState.userCompetitionsLoaded){

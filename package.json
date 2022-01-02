@@ -17,12 +17,13 @@
     "formik": "^2.2.9",
     "next": "latest",
     "next-images": "^1.8.2",
-    "next-redux-wrapper": "^7.0.5",
     "prop-types": "latest",
     "react": "latest",
+    "react-countdown": "^2.3.2",
     "react-dom": "latest",
     "react-intl": "^5.21.2",
     "react-redux": "^7.2.6",
+    "react-stopwatch": "^2.0.4",
     "yup": "^0.32.11"
   },
   "scripts": {

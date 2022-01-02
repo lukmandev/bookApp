@@ -10,8 +10,6 @@ const initialState = {
     detailCompetition: null,
     detailCompetitionLoaded: false,
     detailCompetitionError: null,
-    correctAnswers: 0,
-    wrongAnswers: 0,
 }
 
 const competition = createSlice({

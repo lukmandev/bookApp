@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {useDispatch} from "react-redux";
 import {setAuth} from "../store/reducers/auth";
 import api from "./api";
 import {getCookie, setCookie} from "../utils/cookie";
+import {store} from "../store/reducer";
 
 
 const authApi = axios.create({
@@ -17,25 +17,24 @@ authApi.interceptors.request.use((config) => {
 authApi.interceptors.response.use((config) => {
     return config;
 },async (error) => {
-    const dispatch = useDispatch();
     const originalRequest = error.config;
     if (error.response.status === 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
-            const response = await api.post(`/auth/refresh/`, {
+            const response = await api.post(`/users/refresh/`, {
                 refresh: getCookie('refreshToken'),
             });
             localStorage.setItem('accessToken', response.data.access);
             setCookie('refreshToken', response.data.refresh, 30);
-            dispatch(setAuth(true));
+            store.dispatch(setAuth(true));
             return authApi.request(originalRequest);
         } catch (e) {
-            dispatch(setAuth(false));
+            store.dispatch(setAuth(false));
             return Promise.reject(error);
         }
     }
     if(error.config._isRetry){
-        dispatch(setAuth(false));
+        store.dispatch(setAuth(false));
     }
     return Promise.reject(error);
 });

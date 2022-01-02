@@ -1,17 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
 
 import main from './reducers/main';
 import auth from './reducers/auth';
 import competition from './reducers/competition';
+import test from './reducers/test';
 
-export const makeStore = () => configureStore({
+export const store = configureStore({
     reducer: {
         main,
         auth,
         competition,
+        test,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
-
-export const wrapper = createWrapper(makeStore);

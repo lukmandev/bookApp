@@ -9,4 +9,5 @@ export const authErrors = {
 
 export const competitionErrors = {
     'DETAIL_COMPETITION_ERROR_404': 'Мындай конкурс жок',
+    'ALREADY_PARTICIPATED': 'Сиз бул тестте катышкансыз',
 }

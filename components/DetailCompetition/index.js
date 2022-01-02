@@ -4,6 +4,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {makeStyles} from "@mui/styles";
 import {breakNavPoint, competitionRules} from "../../constants/main";
 import clsx from "clsx";
+import {useRouter} from "next/router";
 
 
 const containerPY = media(30, 50);
@@ -70,21 +71,30 @@ const useStyles = makeStyles(theme => ({
         }
     },
     button: {
+        textTransform: 'none',
         fontSize: media(15, 17),
+    },
+    questionCount: {
+        fontWeigh: '600',
+        padding: `${media(2, 3)} ${media(6, 9)}`,
     },
     startTestButton: {
         maxWidth: '450px',
         width: '100%',
+        fontWeight: '700',
         padding: `${media(3, 5)} ${media(6, 9)}`,
     }
 }));
 
 const DetailCompetition = ({info}) => {
     const styles = useStyles();
+    const router = useRouter();
 
     const startCompetition = () => {
         if(info.participation) return;
-
+        router.push({
+            pathname: '/competition/start-test',
+        });
     }
 
     return (
@@ -96,11 +106,11 @@ const DetailCompetition = ({info}) => {
                     </Box>
                 </Box>
                 <Box sx={{py: media(10, 15), display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    <Typography textAlign="center" fontSize={media(16, 18)} fontWeight="600" color="quaternary">Сүйүктүү Пайгамбарыбыз Мухаммед (сав) өмүр баяны</Typography>
+                    <Typography textAlign="center" fontSize={media(16, 18)} fontWeight="600" color="quaternary">{info.book.title}</Typography>
                     <Typography sx={{pt: media(4, 7), pb: media(9, 12)}} textAlign="center" color="#838383" fontWeight="400" fontSize={media(13, 15)}>
                         Автор: {info.book.author}
                     </Typography>
-                    <Button sx={{minWidth: media(130, 180)}} className={styles.button} variant="contained">{info.questions.length} суроо</Button>
+                    <Button sx={{minWidth: media(130, 180)}} className={clsx(styles.button, styles.questionCount)} variant="contained">{info.questions.length} суроо</Button>
                 </Box>
             </Box>
             <Box className={styles.rightColumn}>

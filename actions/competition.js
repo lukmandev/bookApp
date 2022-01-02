@@ -10,6 +10,7 @@ import {
     setUserCompetitionsLoaded
 } from "../store/reducers/competition";
 import {authErrors, competitionErrors} from "../constants/errors";
+import {setParticipationError, setParticipationInfoLoaded, setParticipationIsSuccess} from "../store/reducers/test";
 
 
 export const getUserCompetitions = createAsyncThunk(
@@ -42,13 +43,39 @@ export const getDetailCompetition = createAsyncThunk(
                 }else{
                     dispatch(setDetailCompetitionError(authErrors['ERROR_500']));
                 }
-            }else if(e.request){
+            }else if(e.request && !e.response){
                 dispatch(setDetailCompetitionError(authErrors['ERROR_500']));
             }else{
                 dispatch(setDetailCompetitionError(authErrors['ERROR_500']));
             }
         } finally {
             dispatch(setDetailCompetitionLoaded(true));
+        }
+    }
+);
+
+
+export const setParticipation = createAsyncThunk(
+    'competition/detail/',
+    async (body, {dispatch}) => {
+        dispatch(setParticipationInfoLoaded(false));
+        dispatch(setParticipationIsSuccess(false));
+        dispatch(setParticipationError(null));
+        try {
+            // await authApi.post(`/competition/participation/`, body);
+            dispatch(setParticipationIsSuccess(true));
+        } catch (e) {
+            if(e.response && e.response.status === 403){
+                dispatch(setParticipationError(competitionErrors['ALREADY_PARTICIPATED']));
+            }else{
+                dispatch(setParticipationError(authErrors['ERROR_500']));
+            }
+        } finally {
+
+            dispatch(setParticipationIsSuccess(true));
+            dispatch(setParticipationError(null));
+
+            dispatch(setParticipationInfoLoaded(true));
         }
     }
 );

@@ -4,6 +4,7 @@ import {media} from "../../utils/media";
 import clsx from "clsx";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {styles} from "./styles";
+import {useRouter} from "next/router";
 
 
 
@@ -56,7 +57,17 @@ const useStyles = makeStyles({
 
 
 const CompetitionItem = ({item, isAvailable}) => {
+    const router = useRouter();
     const muiStyles = useStyles();
+
+    const handleStartTest = () => {
+        router.push({
+            pathname: '/competition/[id]',
+            query: {
+                id: item.id
+            }
+        });
+    }
     return (
         <Card className={muiStyles.card}>
             <img src={item.book.poster} className={muiStyles.img} />
@@ -75,6 +86,7 @@ const CompetitionItem = ({item, isAvailable}) => {
                         {item.questions_count} суроо
                     </Button>
                     <Button
+                        onClick={handleStartTest}
                         variant="outlined"
                         className={clsx(muiStyles.questionCountBtn, muiStyles.button)}
                     >
