@@ -3,7 +3,6 @@ import {useEffect} from "react";
 import {getUserCompetitions} from "../actions/competition";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCompetition} from "../store/selectors/competition";
-import {selectAuth} from "../store/selectors/auth";
 import CompetitionItem from "../components/CompetitionItem/index";
 import {makeStyles} from "@mui/styles";
 import {media} from "../utils/media";
@@ -42,14 +41,11 @@ const useStyles = makeStyles(theme => ({
 const Home = () => {
     const styles = useStyles();
     const dispatch = useDispatch();
-    const authState = useSelector(selectAuth);
     const competitionState = useSelector(selectCompetition);
 
     useEffect(() => {
-        if(authState.isAuth){
-            dispatch(getUserCompetitions());
-        }
-    }, [authState.isAuth]);
+        dispatch(getUserCompetitions());
+    }, []);
 
     useEffect(() => {
         return () => {
@@ -94,17 +90,23 @@ const Home = () => {
     }
 
     return (
-        <MainLayout>
-            <Container maxWidth="lg" className={styles.container}>
-                <Box className={clsx(styles.gridWrapper, {
-                    empty: !!(competitionState.userCompetitionsLoaded && !competitionState.userCompetitionsError && competitionState.userCompetitions.length === 0)
-                })}>
-                    {outUserCompetitions()}
-                </Box>
-            </Container>
-        </MainLayout>
+        <Container maxWidth="lg" className={styles.container}>
+            <Box className={clsx(styles.gridWrapper, {
+                empty: !!(competitionState.userCompetitionsLoaded && !competitionState.userCompetitionsError && competitionState.userCompetitions.length === 0)
+            })}>
+                {outUserCompetitions()}
+            </Box>
+        </Container>
     )
 }
 
 
-export default Home;
+const WrapperHome = () => {
+
+    return (
+        <MainLayout Child={Home} />
+    )
+}
+
+
+export default WrapperHome;

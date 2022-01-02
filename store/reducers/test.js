@@ -12,14 +12,12 @@ const initialState = {
         answer: null,
         question: null
     },
+    participationUpdateInfoLoaded: false,
+    participationUpdateError: null,
+    participationUpdateSuccess: false,
 }
 
 
-const r = {
-    answer: 12,
-    question: 1,
-    time: 5443,
-}
 const test = createSlice({
     name: 'test',
     initialState,
@@ -47,7 +45,16 @@ const test = createSlice({
         },
         setParticipationInfoLoaded(state, action){
             state.participationInfoLoaded = action.payload;
-        }
+        },
+        setParticipationUpdateInfoLoaded(state, action){
+            state.participationUpdateInfoLoaded = action.payload;
+        },
+        setParticipationUpdateError(state, action){
+            state.participationUpdateError = action.payload;
+        },
+        setParticipationUpdateSuccess(state, action){
+            state.participationUpdateSuccess = action.payload;
+        },
     },
 });
 
@@ -59,6 +66,9 @@ export const {
     setSelectedAnswer,
     setTestEnded,
     setTestStarted,
-    setCurrentQuestion
+    setCurrentQuestion,
+    setParticipationUpdateSuccess,
+    setParticipationUpdateError,
+    setParticipationUpdateInfoLoaded
 } = test.actions;
 export default test.reducer;

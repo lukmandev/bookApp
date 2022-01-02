@@ -4,9 +4,15 @@ import MainLayout from "../layouts/Main";
 const Contacts = () => {
 
     return (
-        <MainLayout>
-            Click
-        </MainLayout>
+        <>
+
+        </>
+    )
+}
+
+const WrapperContacts = () => {
+    return (
+        <MainLayout Child={Contacts} />
     )
 }
 

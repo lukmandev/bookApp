@@ -10,7 +10,7 @@ import {setLoading} from "../store/reducers/main";
 import CompetitionRegister from "../components/Login/CompetitionRegister";
 
 
-const MainLayout = ({children}) => {
+const MainLayout = ({Child}) => {
     const dispatch = useDispatch();
     const authState = useSelector(selectAuth);
     const breakPoint = useMediaQuery(breakNavPoint);
@@ -31,20 +31,19 @@ const MainLayout = ({children}) => {
             if(!authState.profile.competitionProfile){
                 return <CompetitionRegister />
             }
+            return (
+                <>
+                    {breakPoint ? (
+                        <MobileBottomNavigation />
+                    ) : null}
+                    <Header />
+                    <Child />
+                </>
+            )
         }
     }else{
         return null;
     }
-
-    return (
-        <>
-            {breakPoint ? (
-                <MobileBottomNavigation />
-            ) : null}
-            <Header />
-            {children}
-        </>
-    )
 }
 
 export default MainLayout;

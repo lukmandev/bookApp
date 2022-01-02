@@ -67,10 +67,18 @@ const Competition = ({info}) => {
 
 
     return (
-        <MainLayout>
+        <>
             {outDetailCompetition()}
-        </MainLayout>
+        </>
     )
 }
 
-export default Competition;
+
+const WrapperCompetition = () => {
+
+    return (
+        <MainLayout Child={Competition} />
+    )
+}
+
+export default WrapperCompetition;

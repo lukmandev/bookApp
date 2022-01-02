@@ -6,8 +6,8 @@ import Countdown, {zeroPad} from 'react-countdown';
 import {useDispatch, useSelector} from "react-redux";
 import {selectTest} from "../../store/selectors/test";
 import {selectCompetition} from "../../store/selectors/competition";
-import {useCallback, useMemo} from "react";
-import {setSelectedAnswer} from "../../store/reducers/test";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {setAnswers, setCurrentQuestion, setSelectedAnswer, setTestEnded} from "../../store/reducers/test";
 
 
 const boxWidth = '340px';
@@ -86,32 +86,49 @@ const useStyles = makeStyles(theme => ({
     indicatorActive: {
         height: '100%',
         background: theme.palette.primary.main,
+        transition: '0.1s ease',
     }
 }));
 
 
-const LETTER_VARIANTS = ['A', 'B', 'C', 'D', 'E'];
+const LETTER_VARIANTS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 const Question = () => {
     const dispatch = useDispatch();
     const styles = useStyles();
     const testState = useSelector(selectTest);
     const competitionState = useSelector(selectCompetition);
-
+    const countdown = useRef(null);
     const currentQuestion = useMemo(() => {
         const question = competitionState.detailCompetition.questions[testState.currentQuestion];
         return question;
     }, [testState.currentQuestion]);
+
+    const [timerDate, setTimerDate] = useState(Date.now() + (currentQuestion.duration * 1000));
+
+    useEffect(() => {
+        setTimerDate(Date.now() + (currentQuestion.duration * 1000));
+    }, [currentQuestion]);
 
     const handleSelectAnswer = (id) => {
         dispatch(setSelectedAnswer({answer: id, question: currentQuestion.id}));
     }
 
     const handleSetNextQuestion = () => {
-
+        const nextQuestion = competitionState.detailCompetition.questions[testState.currentQuestion + 1];
+        dispatch(setAnswers([...testState.answers, {
+            answer: testState.selectedAnswer.question !== currentQuestion.id ? null : testState.selectedAnswer.answer,
+            question: currentQuestion.id,
+            time: currentQuestion.duration - countdown.current.state.timeDelta.seconds,
+        }]));
+        if(nextQuestion){
+            dispatch(setCurrentQuestion(testState.currentQuestion + 1));
+        }else{
+            dispatch(setTestEnded(true));
+        }
     }
 
-    const renderer = ({ hours, minutes, seconds, completed, total }) => {
+    const renderer = useCallback(({ minutes, seconds, total }) => {
         return (
             <Box className={styles.timerHolder}>
                 <Typography fontSize={media(12, 14)} fontWeight="400" color="quaternary">
@@ -126,7 +143,20 @@ const Question = () => {
                 </Box>
             </Box>
         );
-    };
+    }, [currentQuestion])
+
+    const outCountdown = useMemo(() => {
+        return (
+            <Countdown
+                ref={countdown}
+                autoStart
+                key={testState.currentQuestion}
+                onComplete={handleSetNextQuestion}
+                date={timerDate}
+                renderer={renderer}
+            />
+        )
+    }, [timerDate, testState.selectedAnswer]);
 
     const outSelectedBtnClassName = useCallback((elem) => {
         return testState.selectedAnswer.answer === elem.id
@@ -140,15 +170,18 @@ const Question = () => {
             </Button>
         )
     }, [testState.selectedAnswer]);
+
     return (
         <Container className={styles.container} maxWidth="md">
             <Button variant="contained" className={styles.questionIndex}>1 суроо</Button>
-            <Countdown date={Date.now() + (currentQuestion.duration * 1000) } renderer={renderer}/>
+            {outCountdown}
+            {currentQuestion.helperTitle ? (
+                <Typography textAlign="center" fontSize={media(12, 14)} fontWeight="400" color="quaternary">
+                    {currentQuestion.helperTitle}
+                </Typography>
+            ) : null}
             <Typography textAlign="center" fontSize={media(14, 16)} fontWeight="400" color="quaternary">
-                Пайгамбарыбыз (саллаллооху алейхи
-                ва саллам) Мадина шаарына көчүүдөн
-                алдың шаардын аталышы
-                кандай болчу?
+                {currentQuestion.title}
             </Typography>
             <Box className={styles.questionHolder}>
                 {currentQuestion.variants.map((elem, i) => (
