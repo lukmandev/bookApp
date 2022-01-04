@@ -2,7 +2,7 @@ import {PAGES_ID} from "./main";
 
 
 export const pagesTitle = {
-    APP: "Шаблон",
+    APP: "Тест",
     [PAGES_ID.INDEX]: "Главная Страница",
 }
 

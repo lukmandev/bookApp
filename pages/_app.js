@@ -11,6 +11,7 @@ import Loading from "../components/global/Loading";
 import OnceEffect from "../components/OnceEffect";
 import {Provider} from "react-redux";
 import {store} from "../store/reducer";
+import ModalWithOptions from "../components/ModalWithOptions";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -29,6 +30,7 @@ function MyApp(props) {
                   <Component {...pageProps} />
                   <Loading />
                   <OnceEffect />
+                  <ModalWithOptions />
               </ThemeProvider>
           </Provider>
         </CacheProvider>

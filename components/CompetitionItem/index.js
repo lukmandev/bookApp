@@ -4,8 +4,7 @@ import {media} from "../../utils/media";
 import clsx from "clsx";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {styles} from "./styles";
-import {useRouter} from "next/router";
-
+import {format} from "date-fns";
 
 
 const useStyles = makeStyles({
@@ -24,6 +23,10 @@ const useStyles = makeStyles({
     cardContent: {
         width: '100%',
         position: 'relative',
+        padding: media(10, 14),
+        '&:last-child': {
+            padding: media(10, 14),
+        }
     },
     authorTitle: {
         margin: `${media(5, 6)} 0`,
@@ -56,18 +59,9 @@ const useStyles = makeStyles({
 });
 
 
-const CompetitionItem = ({item, isAvailable}) => {
-    const router = useRouter();
+const CompetitionItem = ({item, isAvailable, showDate, handleStartTest, buttonText="Тест тапшыруу"}) => {
     const muiStyles = useStyles();
 
-    const handleStartTest = () => {
-        router.push({
-            pathname: '/competition/[id]',
-            query: {
-                id: item.id
-            }
-        });
-    }
     return (
         <Card className={muiStyles.card}>
             <img src={item.book.poster} className={muiStyles.img} />
@@ -90,9 +84,14 @@ const CompetitionItem = ({item, isAvailable}) => {
                         variant="outlined"
                         className={clsx(muiStyles.questionCountBtn, muiStyles.button)}
                     >
-                        Тест тапшыруу
+                        {buttonText}
                     </Button>
                 </Box>
+                {showDate ? (
+                    <Typography marginTop={media(5, 7)} fontSize={media(10, 12)} fontWeight="500" color="quaternary">
+                        Дата: {format(new Date(item.startTime), 'yyyy-MM-dd')}
+                    </Typography>
+                ) : null}
                 {isAvailable ? (
                     item.participation ? (
                         <LockOutlinedIcon className={muiStyles.lockIcon} />

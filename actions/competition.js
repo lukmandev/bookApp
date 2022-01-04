@@ -4,7 +4,7 @@ import {
     setDetailCompetition, setDetailCompetitionError, setDetailCompetitionLoaded,
     setPublicCompetitions,
     setPublicCompetitionsError,
-    setPublicCompetitionsLoaded,
+    setPublicCompetitionsLoaded, setSearchCompetitions, setSearchCompetitionsError, setSearchCompetitionsLoaded,
     setUserCompetitions,
     setUserCompetitionsError,
     setUserCompetitionsLoaded
@@ -13,8 +13,10 @@ import {authErrors, competitionErrors} from "../constants/errors";
 import {
     setParticipationError,
     setParticipationInfoLoaded,
-    setParticipationIsSuccess, setParticipationUpdateError,
-    setParticipationUpdateInfoLoaded, setParticipationUpdateSuccess
+    setParticipationIsSuccess,
+    setParticipationUpdateError,
+    setParticipationUpdateInfoLoaded,
+    setParticipationUpdateSuccess,
 } from "../store/reducers/test";
 
 
@@ -97,19 +99,35 @@ export const participationUpdate = createAsyncThunk(
 );
 
 
-
-
 export const getPublicCompetitions = createAsyncThunk(
     'competition/public/',
     async (path, {dispatch}) => {
         dispatch(setPublicCompetitionsLoaded(false));
+        dispatch(setPublicCompetitionsError(null));
+        dispatch(setPublicCompetitions([]));
         try {
-            const {data} = await authApi.get(`/competition/${path}/`);
+            const {data} = await authApi.get(path);
             dispatch(setPublicCompetitions(data));
         } catch (e) {
             dispatch(setPublicCompetitionsError(authErrors['ERROR_500']));
         } finally {
             dispatch(setPublicCompetitionsLoaded(true));
+        }
+    }
+);
+
+
+export const fetchCompetitionBySearch = createAsyncThunk(
+    'competition/search/',
+    async (query, {dispatch}) => {
+        dispatch(setSearchCompetitionsLoaded(false));
+        try {
+            const {data} = await authApi.get(`/competition/search/?search=${query}`);
+            dispatch(setSearchCompetitions(data));
+        } catch (e) {
+            dispatch(setSearchCompetitionsError(authErrors['ERROR_500']));
+        } finally {
+            dispatch(setSearchCompetitionsLoaded(true));
         }
     }
 );

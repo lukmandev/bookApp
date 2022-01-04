@@ -68,6 +68,29 @@ export const setCompetitionProfile = createAsyncThunk(
     }
 );
 
+
+export const updateCompetitionProfile = createAsyncThunk(
+    'auth/competition/update/',
+    async (body, {dispatch}) => {
+        const result = {
+            isSuccess: false,
+        }
+        try {
+            const {data} = await authApi({
+                method: 'patch',
+                data: body,
+                url: '/users/competition-profile/',
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            dispatch(setProfile(data));
+            result.isSuccess = true;
+        } catch (e) {
+            result.isSuccess = false
+        }
+        return result;
+    }
+);
+
 export const refresh = createAsyncThunk(
     'auth/refresh/',
     async (_, {dispatch}) => {

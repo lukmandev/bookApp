@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {competitionsTabs} from "../../constants/main";
 
 const initialState = {
     userCompetitions: null,
@@ -10,6 +11,10 @@ const initialState = {
     detailCompetition: null,
     detailCompetitionLoaded: false,
     detailCompetitionError: null,
+    selectedTab: competitionsTabs[0],
+    searchCompetitionsLoaded: false,
+    searchCompetitions: null,
+    searchCompetitionsError: null,
 }
 
 const competition = createSlice({
@@ -43,6 +48,18 @@ const competition = createSlice({
         setDetailCompetitionError(state, action){
             state.detailCompetitionError = action.payload;
         },
+        setSelectedTab(state, action){
+            state.selectedTab = action.payload;
+        },
+        setSearchCompetitionsLoaded(state, action){
+            state.searchCompetitionsLoaded = action.payload;
+        },
+        setSearchCompetitions(state, action){
+            state.searchCompetitions = action.payload;
+        },
+        setSearchCompetitionsError(state, action){
+            state.searchCompetitionsError = action.payload;
+        }
     },
 });
 
@@ -55,6 +72,10 @@ export const {
     setPublicCompetitionsError,
     setDetailCompetitionLoaded,
     setDetailCompetition,
-    setDetailCompetitionError
+    setDetailCompetitionError,
+    setSelectedTab,
+    setSearchCompetitions,
+    setSearchCompetitionsError,
+    setSearchCompetitionsLoaded
 } = competition.actions;
 export default competition.reducer;

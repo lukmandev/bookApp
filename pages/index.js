@@ -11,6 +11,8 @@ import CompetitionItemSkeleton from "../components/CompetitionItem/skeleton";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import clsx from "clsx";
 import {setUserCompetitions, setUserCompetitionsError, setUserCompetitionsLoaded} from "../store/reducers/competition";
+import {useRouter} from "next/router";
+import {gridWrapperStyles, PAGES_ID, PAGES_PATH} from "../constants/main";
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,26 +21,12 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: media(20, 25),
     },
     gridWrapper: {
-        '&.empty': {
-            display: 'flex',
-            gridTemplateColumns: 'unset!important',
-            gridColumnGap: 'unset!important',
-            gridRowGap: 'unset!important',
-        },
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gridColumnGap: media(10, 15),
-        gridRowGap: media(10, 15),
-        '@media (max-width: 1000px)': {
-            gridTemplateColumns: '1fr 1fr',
-        },
-        '@media (max-width: 700px)': {
-            gridTemplateColumns: '1fr',
-        }
+        ...gridWrapperStyles,
     },
 }));
 
 const Home = () => {
+    const router = useRouter();
     const styles = useStyles();
     const dispatch = useDispatch();
     const competitionState = useSelector(selectCompetition);
@@ -62,7 +50,14 @@ const Home = () => {
             }
             if(competitionState.userCompetitions.length){
                 return competitionState.userCompetitions.map((elem, _) => (
-                    <CompetitionItem isAvailable={true} item={elem} key={elem.id} />
+                    <CompetitionItem handleStartTest={() => {
+                        router.push({
+                            pathname: PAGES_PATH[PAGES_ID.DETAIL_COMPETITION],
+                            query: {
+                                id: elem.id
+                            }
+                        });
+                    }} isAvailable={true} item={elem} key={elem.id} />
                 ));
             }
             return (
@@ -92,7 +87,7 @@ const Home = () => {
     return (
         <Container maxWidth="lg" className={styles.container}>
             <Box className={clsx(styles.gridWrapper, {
-                empty: !!(competitionState.userCompetitionsLoaded && !competitionState.userCompetitionsError && competitionState.userCompetitions.length === 0)
+                single: !!(competitionState.userCompetitionsLoaded && !competitionState.userCompetitionsError && competitionState.userCompetitions.length === 0)
             })}>
                 {outUserCompetitions()}
             </Box>

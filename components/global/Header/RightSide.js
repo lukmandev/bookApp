@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import {useRouter} from "next/router";
 import {breakNavPoint, PAGES_ID, PAGES_PATH, PAGES_TITLE} from "../../../constants/main";
 import {appColors} from "../../../utils/theme";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import clsx from "clsx";
 import {useDispatch, useSelector} from "react-redux";
 import {setHeaderFormOpen} from "../../../store/reducers/main";
@@ -113,7 +113,12 @@ const RightSide = () => {
                 initialValues={{text: ""}}
                 validationSchema={validationSchema}
                 onSubmit={(values, _) => {
-                    router.push(`/competition/search/${values.text}`);
+                    router.push({
+                        pathname: PAGES_PATH[PAGES_ID.SEARCH_PAGE],
+                        query: {
+                            query: values.text
+                        }
+                    });
                 }}
             >
                 {(formik) => (

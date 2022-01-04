@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     isLoading: false,
     isHeaderFormOpen: false,
+    modalActive: false,
 }
 
 const main = createSlice({
@@ -14,12 +15,16 @@ const main = createSlice({
         },
         setHeaderFormOpen(state, action){
             state.isHeaderFormOpen = action.payload;
+        },
+        setModalActive(state, action){
+            state.modalActive = action.payload;
         }
     },
 });
 
 export const {
     setLoading,
-    setHeaderFormOpen
+    setHeaderFormOpen,
+    setModalActive
 } = main.actions;
 export default main.reducer;

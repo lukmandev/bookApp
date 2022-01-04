@@ -69,6 +69,6 @@ export const {
     setCurrentQuestion,
     setParticipationUpdateSuccess,
     setParticipationUpdateError,
-    setParticipationUpdateInfoLoaded
+    setParticipationUpdateInfoLoaded,
 } = test.actions;
 export default test.reducer;
