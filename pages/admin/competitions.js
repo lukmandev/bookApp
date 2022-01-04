@@ -54,7 +54,7 @@ const AdminCompetitions = () => {
             }
             if(adminState.competitions.length){
                 return adminState.competitions.map((elem) => (
-                    <CompetitionItem buttonText="Результаттар" item={elem} handleStartTest={() => {
+                    <CompetitionItem key={elem.id} buttonText="Результаттар" isAvailable={true} item={elem} handleStartTest={() => {
                         router.push({
                             pathname: '/admin/competition/[id]',
                             query: {

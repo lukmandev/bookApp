@@ -60,7 +60,7 @@ const Participations = () => {
                 ));
             }
             return (
-                <ErrorMessage message="Конкурстар жок" />
+                <ErrorMessage message="Бул конкурска катышкан кишилер жок" />
             )
         }
         return Array(10).fill(0).map((_, i) => (
