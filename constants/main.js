@@ -148,14 +148,20 @@ export const imageSkeleton = require('../assets/images/avatar.png');
 export const contactsList = [
     {
         title: "+996 700 12 13 15",
+        icon: WhatsAppIcon,
+        color: '#1ED400',
+        link: 'https://wa.me/0706048466',
+    },
+    {
+        title: "+996 700 12 13 15",
         icon: TelegramIcon,
+        color: '#0090CD',
+        link: 'https://t.me/username',
     },
     {
-        title: "",
-        icon: WhatsAppIcon
-    },
-    {
-        title: "",
-        icon: PhoneOutlinedIcon
+        title: "+996 700 12 13 15",
+        icon: PhoneOutlinedIcon,
+        color: '#009DCE',
+        link: 'tel:+996700121315'
     }
 ]
