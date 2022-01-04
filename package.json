@@ -24,12 +24,11 @@
     "react-dom": "latest",
     "react-intl": "^5.21.2",
     "react-redux": "^7.2.6",
-    "react-stopwatch": "^2.0.4",
     "yup": "^0.32.11"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start"
   }
 }
