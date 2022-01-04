@@ -1,4 +1,4 @@
-import {Box, Button, Container, Slider, Typography} from "@mui/material";
+import {Box, Button, Container, Typography} from "@mui/material";
 import {media} from "../../utils/media";
 import {makeStyles} from "@mui/styles";
 import clsx from "clsx";

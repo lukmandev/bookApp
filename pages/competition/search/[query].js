@@ -1,12 +1,11 @@
 import MainLayout from "../../../layouts/Main";
 import {useEffect, useMemo} from "react";
 import {useRouter} from "next/router";
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import {gridWrapperStyles} from "../../../constants/main";
 import {media} from "../../../utils/media";
 import clsx from "clsx";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import CompetitionItem from "../../../components/CompetitionItem";
 import CompetitionItemSkeleton from "../../../components/CompetitionItem/skeleton";
 import {fetchCompetitionBySearch} from "../../../actions/competition";

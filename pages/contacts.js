@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/Main";
-import {Box, Container, Link as MuiLink, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography} from "@mui/material";
+import {Box, Container, Link as MuiLink, List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import {media} from "../utils/media";
 import {contactsList} from "../constants/main";

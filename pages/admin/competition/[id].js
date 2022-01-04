@@ -12,7 +12,6 @@ import {makeStyles} from "@mui/styles";
 import {gridWrapperStyles} from "../../../constants/main";
 import clsx from "clsx";
 import ErrorMessage from "../../../components/ErrorMessage";
-import CompetitionItem from "../../../components/CompetitionItem";
 import CompetitionItemSkeleton from "../../../components/CompetitionItem/skeleton";
 
 

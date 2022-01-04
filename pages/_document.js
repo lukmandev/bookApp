@@ -2,7 +2,6 @@ import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import {ServerStyleSheets} from "@mui/styles";
-import theme from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import {metaTags} from "../constants/seo";
 

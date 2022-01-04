@@ -10,14 +10,9 @@ import {setLoading} from "../../store/reducers/main";
 import {Box, Typography} from "@mui/material";
 import {media} from "../../utils/media";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import {
-    setDetailCompetition,
-    setDetailCompetitionError,
-    setDetailCompetitionLoaded
-} from "../../store/reducers/competition";
 
 
-const Competition = ({info}) => {
+const Competition = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const authState = useSelector(selectAuth)
