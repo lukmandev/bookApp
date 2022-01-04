@@ -102,7 +102,7 @@ const Competitions = () => {
                         if(!elem.is_bought){
                             dispatch(setModalActive(true));
                         }
-                    }} item={elem} key={elem.id} />
+                    }} item={elem} key={elem.id} buttonText="Тест тапшыруу" />
                 ));
             }
             return (

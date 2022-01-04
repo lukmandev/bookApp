@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
     img: {
         width: styles.img.width,
-        height: '100%',
+        height: styles.card.height,
         objectFit: 'cover',
     },
     cardContent: {

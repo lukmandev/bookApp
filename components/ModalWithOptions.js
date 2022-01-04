@@ -21,10 +21,9 @@ const useStyles = makeStyles(theme => ({
     },
     wrapper: {
         background: theme.palette.primary.main,
-        padding: `${media(25, 30)} ${media(50, 65)}`,
+        padding: `${media(18, 30)} ${media(23, 55)}`,
     },
     innerWrapper: {
-        maxWidth: '275px',
         display: 'flex',
         gridRowGap: media(14, 19),
         flexDirection: 'column',
@@ -32,6 +31,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'flex-start',
     },
     title: {
+        maxWidth: '300px',
         color: theme.palette.fivefold.main,
     },
     buttonHolder: {
@@ -87,7 +87,7 @@ const ModalWithOptions = () => {
                     </Typography>
                     <Box className={styles.buttonHolder}>
                         <Button onClick={handleOpenApp} className={clsx(styles.buttonLeft, styles.button)}>
-                            Катталам
+                            Сатып алуу
                         </Button>
                         <Button onClick={handleCloseModal} className={clsx(styles.button, styles.buttonRight)}>
                             Чыгуу
