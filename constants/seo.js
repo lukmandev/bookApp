@@ -9,15 +9,15 @@ export const pagesTitle = {
 export const metaTags = [
     {
         name: "title",
-        content: "Куран нуру медресес"
+        content: "Кел тез окуйбуз"
     },
     {
         name: "description",
-        content: "Куран нуру медресес"
+        content: "Китептер боюнча конкурстар сайты"
     },
     {
         name: "keywords",
-        content: "Куран нуру медресес"
+        content: "Китептер,тест,конкурс"
     },
     {
         name: "robots",
