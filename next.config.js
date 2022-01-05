@@ -9,7 +9,7 @@ module.exports = withImages({
         disableStaticImages: true
     },
     env: {
-        API_URL: 'http://localhost:8000',
+        API_URL: 'https://payment-test-app-v2.herokuapp.com/',
         BASE_URL: 'http://localhost:3000'
     }
 });
