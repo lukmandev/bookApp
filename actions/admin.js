@@ -43,3 +43,21 @@ export const fetchCompetitionParticipation = createAsyncThunk(
     }
 );
 
+export const bulkCreateUsers = createAsyncThunk(
+    'admin/users/add',
+    async (body, _) => {
+        const result = {
+            isSuccess: false,
+            data: ""
+        }
+        try {
+            const {data} = await authApi.post('/users/bulk-create/', body);
+            result.isSuccess = true;
+            result.data = data.emailError ? data.emails : "Пользовательдер кошулду";
+        } catch (e) {
+            result.data = "Ката кетип калды";
+        }
+        return result;
+    }
+);
+

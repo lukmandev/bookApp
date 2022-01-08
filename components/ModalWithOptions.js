@@ -83,7 +83,7 @@ const ModalWithOptions = () => {
             <Box className={styles.wrapper}>
                 <Box className={styles.innerWrapper}>
                     <Typography textAlign="center" fontSize={media(16, 17)} fontWeight="400" className={styles.title}>
-                        Электрогдук кинтепканадан китеп сатып алыңыз!
+                        Электрондук кинтепканадан китеп сатып алыңыз!
                     </Typography>
                     <Box className={styles.buttonHolder}>
                         <Button onClick={handleOpenApp} className={clsx(styles.buttonLeft, styles.button)}>

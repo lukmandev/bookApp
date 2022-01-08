@@ -18,7 +18,7 @@ import {useRouter} from "next/router";
 const containerPY = media(15, 20);
 const gridWrapperPY = media(10, 15);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
     container: {
         display: 'flex',
         flexDirection: 'column',
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         paddingTop: gridWrapperPY,
         paddingBottom: gridWrapperPY,
     }
-}));
+});
 
 
 const AdminCompetitions = () => {

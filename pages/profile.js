@@ -102,11 +102,18 @@ const Profile = () => {
                 )}
             </Formik>
             {profile.is_staff ? (
-                <NextLink href="/admin/competitions">
-                    <MuiLink sx={{cursor: 'pointer'}} marginTop={media(12, 17)} underline="none" fontSize={media(14, 16)} fontWeight="600" color="primary">
-                        Конкурстардын результатарын коруу
-                    </MuiLink>
-                </NextLink>
+                <>
+                    <NextLink href="/admin/competitions">
+                        <MuiLink sx={{cursor: 'pointer'}} marginTop={media(12, 17)} underline="none" fontSize={media(14, 16)} fontWeight="600" color="primary">
+                            Конкурстардын результатарын коруу
+                        </MuiLink>
+                    </NextLink>
+                    <NextLink href="/admin/add-users">
+                        <MuiLink sx={{cursor: 'pointer'}} marginTop={media(12, 17)} underline="none" fontSize={media(14, 16)} fontWeight="600" color="primary">
+                            Коп катышуучу кошуу
+                        </MuiLink>
+                    </NextLink>
+                </>
             ) : null}
         </Container>
     )
