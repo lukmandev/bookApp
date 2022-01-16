@@ -3,6 +3,7 @@ import {Box, Container, Link as MuiLink, List, ListItem, ListItemIcon, ListItemT
 import {makeStyles} from "@mui/styles";
 import {media} from "../utils/media";
 import {contactsList} from "../constants/main";
+import clsx from "clsx";
 
 
 
@@ -69,7 +70,7 @@ const Contacts = () => {
                             <ListItemIcon className={styles.icon} sx={{color: 'primary.main'}}>
                                 <elem.icon />
                             </ListItemIcon>
-                            <ListItemText className={styles.listItemText} primary={elem.title} />
+                            <ListItemText className={clsx(styles.listItemText, 'poppins')} primary={elem.title} />
                         </ListItem>
                     ))}
                 </List>
