@@ -4,6 +4,9 @@ const initialState = {
     isLoading: false,
     isHeaderFormOpen: false,
     modalActive: false,
+    socials: null,
+    socialsLoaded: false,
+    socialsError: null,
 }
 
 const main = createSlice({
@@ -18,6 +21,15 @@ const main = createSlice({
         },
         setModalActive(state, action){
             state.modalActive = action.payload;
+        },
+        setSocials(state, action){
+            state.socials = action.payload;
+        },
+        setSocialsLoaded(state, action){
+            state.socialsLoaded = action.payload;
+        },
+        setSocialsError(state, action){
+            state.socialsError = action.payload;
         }
     },
 });
@@ -25,6 +37,9 @@ const main = createSlice({
 export const {
     setLoading,
     setHeaderFormOpen,
-    setModalActive
+    setModalActive,
+    setSocials,
+    setSocialsError,
+    setSocialsLoaded
 } = main.actions;
 export default main.reducer;

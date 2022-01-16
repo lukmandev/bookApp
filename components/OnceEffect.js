@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {refresh} from "../actions/auth";
 import {setLoading} from "../store/reducers/main";
+import {fetchSocials} from "../actions/main";
 
 
 const OnceEffect = () => {
@@ -11,6 +12,7 @@ const OnceEffect = () => {
 
     useEffect(() => {
         dispatch(refresh());
+        dispatch(fetchSocials());
     }, []);
 
 

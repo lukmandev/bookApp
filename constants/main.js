@@ -22,7 +22,7 @@ export const PAGES_TITLE = {
     [PAGES_ID.INDEX]: 'Башкы бет',
     [PAGES_ID.PROFILE]: 'Профиль',
     [PAGES_ID.COMPETITIONS]: 'Конкурстар',
-    [PAGES_ID.CONTACTS]: "Менеджер",
+    [PAGES_ID.CONTACTS]: "Байланыш",
     [PAGES_ID.DETAIL_COMPETITION]: "Конкретный конкурс",
     [PAGES_ID.SEARCH_PAGE]: 'Поиск по конкурсам',
 }

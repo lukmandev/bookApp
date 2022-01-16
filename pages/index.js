@@ -13,9 +13,10 @@ import clsx from "clsx";
 import {setUserCompetitions, setUserCompetitionsError, setUserCompetitionsLoaded} from "../store/reducers/competition";
 import {useRouter} from "next/router";
 import {gridWrapperStyles, PAGES_ID, PAGES_PATH} from "../constants/main";
+import ErrorMessage from "../components/ErrorMessage";
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
     container: {
         paddingTop: media(20, 25),
         paddingBottom: media(20, 25),
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     gridWrapper: {
         ...gridWrapperStyles,
     },
-}));
+});
 
 const Home = () => {
     const router = useRouter();
@@ -61,22 +62,7 @@ const Home = () => {
                 ));
             }
             return (
-                <Box sx={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: `${media(20, 30)} ${media(10, 15)}`,
-                }}>
-                    <SentimentVeryDissatisfiedIcon sx={{
-                        fontSize: media(40, 60),
-                        color: 'primary.main',
-                    }} />
-                    <Typography sx={{mt: media(4, 6)}} textAlign="center" fontWeight="400" fontSize={media(15, 17)} color="quaternary">
-                        Азыр сиз сатып алган китептер боюнча конкурстар жок
-                    </Typography>
-                </Box>
+                <ErrorMessage message="Азыр сиз сатып алган китептер боюнча конкурстар жок" />
             )
         }
         return Array(10).fill(0).map((_, i) => (

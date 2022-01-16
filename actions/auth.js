@@ -105,8 +105,8 @@ export const refresh = createAsyncThunk(
             const {data} = await authApi.post('/users/refresh-with-user/', {refresh: refreshToken});
             localStorage.setItem('accessToken', data.access);
             setCookie('refreshToken', data.refresh, 30);
-            dispatch(setAuth(true));
             dispatch(setProfile(data.user));
+            dispatch(setAuth(true));
         } catch (e) {
             dispatch(setAuth(false));
         } finally {
