@@ -124,18 +124,18 @@ const ParticipationItem = ({item, place}) => {
                     {item.user.competitionProfile.fullname}
                 </Typography>
                 <Box className={styles.buttonHolder}>
-                    <Button className={clsx(styles.questionCountBtn, styles.button)}>{item.questions_count} суроо</Button>
-                    <Button className={clsx(styles.correctAnswersBtn, styles.button)}>{item.correctAnswers} <CheckIcon /></Button>
-                    <Button className={clsx(styles.wrongAnswersBtn, styles.button)}>{item.wrongAnswers} <DangerousOutlinedIcon /></Button>
+                    <Button className={clsx(styles.questionCountBtn, styles.button)}><span className="poppins">{item.questions_count}</span> суроо</Button>
+                    <Button className={clsx(styles.correctAnswersBtn, styles.button)}><span className="poppins">{item.correctAnswers}</span> <CheckIcon /></Button>
+                    <Button className={clsx(styles.wrongAnswersBtn, styles.button)}><span className="poppins">{item.wrongAnswers}</span> <DangerousOutlinedIcon /></Button>
                 </Box>
                 <Box className={styles.dateBox}>
                     <Typography className={styles.dateTitle}>
                         <DateRangeOutlinedIcon />
-                        {format(new Date(item.answeredAt), 'yyyy.MM.dd')}
+                        <span className="poppins">{format(new Date(item.answeredAt), 'yyyy.MM.dd')}</span>
                     </Typography>
                     <Typography className={styles.dateTitle}>
                         <AccessTimeOutlinedIcon />
-                        {format(new Date(item.answeredAt), 'HH:mm')}
+                        <span className="poppins">{format(new Date(item.answeredAt), 'HH:mm')}</span>
                     </Typography>
                 </Box>
             </CardContent>

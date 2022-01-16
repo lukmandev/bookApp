@@ -89,7 +89,7 @@ const CompetitionItem = ({item, isAvailable, showDate, handleStartTest, buttonTe
                 </Box>
                 {showDate ? (
                     <Typography marginTop={media(5, 7)} fontSize={media(10, 12)} fontWeight="500" color="quaternary">
-                        Дата: {format(new Date(item.startTime), 'yyyy-MM-dd')}
+                        Дата: <span className="poppins">{format(new Date(item.startTime), 'yyyy-MM-dd')}</span>
                     </Typography>
                 ) : null}
                 {isAvailable ? (
