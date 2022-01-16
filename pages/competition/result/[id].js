@@ -87,17 +87,9 @@ const Participations = () => {
 }
 
 
-const WrappedAdminParticipation = () => {
-
-    return (
-        <AdminLayout Children={Participations} />
-    )
-}
-
-
 const WrappedParticipations = () => {
     return (
-        <MainLayout Child={WrappedAdminParticipation} />
+        <MainLayout Child={Participations} />
     )
 }
 
