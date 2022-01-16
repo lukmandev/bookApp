@@ -10,8 +10,8 @@ module.exports = withImages({
         disableStaticImages: true
     },
     env: {
-        // API_URL: 'https://payment-test-app-v2.herokuapp.com',
-        API_URL: 'http://0.0.0.0:8000',
+        API_URL: 'https://payment-test-app-v2.herokuapp.com',
+        // API_URL: 'http://0.0.0.0:8000',
         BASE_URL: 'http://localhost:3000'
     }
 });
