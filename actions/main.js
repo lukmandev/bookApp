@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {authErrors} from "../constants/errors";
 import api from "../http/api";
-import {setSocialsError, setSocialsLoaded} from "../store/reducers/main";
+import {setSocials, setSocialsError, setSocialsLoaded} from "../store/reducers/main";
 
 
 export const fetchSocials = createAsyncThunk(

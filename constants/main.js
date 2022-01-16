@@ -15,6 +15,7 @@ export const PAGES_ID = {
     PROFILE: 'PROFILE',
     DETAIL_COMPETITION: 'DETAIL_COMPETITION',
     SEARCH_PAGE: 'SEARCH_PAGE',
+    COMPETITION_RESULT: 'COMPETITION_RESULT',
 }
 
 
@@ -25,6 +26,7 @@ export const PAGES_TITLE = {
     [PAGES_ID.CONTACTS]: "Байланыш",
     [PAGES_ID.DETAIL_COMPETITION]: "Конкретный конкурс",
     [PAGES_ID.SEARCH_PAGE]: 'Поиск по конкурсам',
+    [PAGES_ID.COMPETITION_RESULT]: 'Результат конкурса',
 }
 
 export const PAGES_PATH = {
@@ -34,6 +36,7 @@ export const PAGES_PATH = {
     [PAGES_ID.CONTACTS]: '/contacts',
     [PAGES_ID.DETAIL_COMPETITION]: "/competition/[id]",
     [PAGES_ID.SEARCH_PAGE]: '/competition/search/[query]',
+    [PAGES_ID.COMPETITION_RESULT]: '/competition/result/[id]',
 }
 
 export const DESKTOP_NAV_LIST = [
@@ -87,25 +90,25 @@ export const breakNavPoint = '(max-width:1000px)';
 
 export const competitionRules = [
     {
-        text: "Мүмкүн болушунча адилеттүү болуш үчүн китепти карабооңузду суранабыз.",
+        text: "Адилеттүү болуш үчүн китепти карабаңыз",
     },
     {
-        text: "Эгер сиз бир китепти тандап кайра артка чыга турган болсоңуз, конкурсга кайра катыша албай каласыз!",
+        text: "Бир убакытта бир эле конкурска катыша аласыз!",
     },
     {
         text: "Ар бир суроонун деңелине карап убакыт берилет.",
     },
     {
-        text: "Суроонун ичинен кайсы вариантты акыркы жолу бассаңыз, ошол вариант эсептелинет.",
+        text: "Суроонун ичинен  белгилеген варианттыңызды платформа акыркы жооп катары кабыл алат.",
     },
     {
-        text: "Суроолордун жоопторун тест бүткөндөн кийин көрө аласыз."
+        text: "Конкурстун жыйынтыгын тест бүтөөр замат көрө аласыз.."
     },
     {
-        text: "Эгер сиз тестке киргенден кийин, кандайдыр бир себеп менен сайттан чыксаңыз, сиз конкурстан чыгып кетесиз жана бул кон- курсга кайра катыша албай каласыз!",
+        text: "Тестти баштагандан кийин платформадан чыксаңыз, программа сизди автоматтык түрдө тестен чыгарып салат.",
     },
     {
-        text: "Эгер убакыт бүтүп калса, автоматтык түрдө кийинки суроого өтүп кетет жана жооп  бербеген сурооңуз эсептелинбей калат."
+        text: "Суроого берилген убакытта жооп бербесеңиз анда программа сизди автоматтык түрдө кийинки суроого өткөрүп жиберет.."
     }
 ]
 
@@ -116,9 +119,9 @@ export const competitionsTabs = [
         path: '/competition/public/soon/',
     },
     {
-        title: "Учурда болуп жаткан конкурстар",
+        title: "Сиз катыша ала турган конкурстар",
         id: 1,
-        path: '/competition/public/current/',
+        path: '/competition/mine/',
     },
 ]
 
@@ -163,5 +166,20 @@ export const contactsList = [
         icon: PhoneOutlinedIcon,
         color: '#009DCE',
         link: 'tel:+996700121315'
+    }
+]
+
+export const footerList = [
+    {
+        title: 'Башкы бет',
+        to: '/',
+    },
+    {
+        title: 'Конкурстар',
+        to: '/competitions',
+    },
+    {
+        title: 'Байланыш',
+        to: '/contacts',
     }
 ]

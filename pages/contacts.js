@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     contentHolder: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
     listItem: {
@@ -59,17 +59,14 @@ const Contacts = () => {
         <Container maxWidth="lg" className={styles.container}>
             <img src={require('../assets/images/contacts.svg')} className={styles.mainImage} />
             <Box className={styles.contentHolder}>
-                <Typography textAlign="center" fontSize={media(28, 36)} fontWeight="600" color="quaternary">
-                    Сизде суроо барбы?
-                </Typography>
-                <Typography marginY={media(10, 15)} textAlign="center" fontSize={media(18, 24)} fontWeight="500" color="quaternary">
-                    Биз менен байланышыңыз, биз сизге бардык
-                    пункттарды тактоого жардам беребиз.
+                <Typography textAlign="left" marginBottom={media(20, 30)} fontSize={media(24, 28)} fontWeight="600" color="quaternary">
+                    Сурооңуз болсо төмөндөгү
+                    номерлерге байланышыңыз!
                 </Typography>
                 <List>
                     {contactsList.map((elem, i) => (
                         <ListItem className={styles.listItem} key={i} disablePadding component={MuiLink} href={elem.link}>
-                            <ListItemIcon className={styles.icon} sx={{color: elem.color}}>
+                            <ListItemIcon className={styles.icon} sx={{color: 'primary.main'}}>
                                 <elem.icon />
                             </ListItemIcon>
                             <ListItemText className={styles.listItemText} primary={elem.title} />

@@ -21,6 +21,8 @@ const useStyles = makeStyles(theme => ({
         gridColumnGap: media(5, 8),
         padding: `${media(6, 8)} ${media(7, 10)}`,
         background: "#028FA30D",
+        position: 'relative',
+        overflow: 'initial'
     },
     avatarBox: {
         width: avatarSize,
@@ -88,13 +90,32 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.quaternary.main,
         fontSize: media(13, 15),
         fontWeight: '500',
+    },
+    userPlace: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        transform: 'translate(-20%, -50%)',
+        width: media(28, 30),
+        height: media(28, 30),
+        borderRadius: '50%',
+        background: theme.palette.primary.main,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        fontSize: media(18, 22),
+        fontWeight: "500"
     }
 }));
 
-const ParticipationItem = ({item}) => {
+const ParticipationItem = ({item, place}) => {
     const styles = useStyles();
     return (
         <Card className={styles.card}>
+            <Box className={styles.userPlace}>
+                {place}
+            </Box>
             <Box className={styles.avatarBox}>
                 <img src={item.user.competitionProfile.avatar ? item.user.competitionProfile.avatar : imageSkeleton} />
             </Box>
@@ -102,18 +123,15 @@ const ParticipationItem = ({item}) => {
                 <Typography fontSize={media(11, 13)} fontWeight="600" color="quaternary">
                     {item.user.competitionProfile.fullname}
                 </Typography>
-                <Typography fontSize={media(10, 12)} fontWeight="400" color="#838383">
-                    Тел: {item.user.competitionProfile.phone}
-                </Typography>
                 <Box className={styles.buttonHolder}>
-                    <Button className={clsx(styles.questionCountBtn, styles.button)}>{item.question_count} суроо</Button>
+                    <Button className={clsx(styles.questionCountBtn, styles.button)}>{item.questions_count} суроо</Button>
                     <Button className={clsx(styles.correctAnswersBtn, styles.button)}>{item.correctAnswers} <CheckIcon /></Button>
                     <Button className={clsx(styles.wrongAnswersBtn, styles.button)}>{item.wrongAnswers} <DangerousOutlinedIcon /></Button>
                 </Box>
                 <Box className={styles.dateBox}>
                     <Typography className={styles.dateTitle}>
                         <DateRangeOutlinedIcon />
-                        {format(new Date(item.answeredAt), 'yyyy-MM-dd')}
+                        {format(new Date(item.answeredAt), 'yyyy.MM.dd')}
                     </Typography>
                     <Typography className={styles.dateTitle}>
                         <AccessTimeOutlinedIcon />

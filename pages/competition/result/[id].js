@@ -4,8 +4,7 @@ import MainLayout from "../../../layouts/Main";
 import {useEffect, useMemo} from "react";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAdmin} from "../../../store/selectors/admin";
-import {fetchCompetitionParticipation} from "../../../actions/admin";
+import {fetchCompetitionParticipation} from "../../../actions/competition";
 import ParticipationItem from "../../../components/ParticipationItem";
 import {media} from "../../../utils/media";
 import {makeStyles} from "@mui/styles";
@@ -13,6 +12,7 @@ import {gridWrapperStyles} from "../../../constants/main";
 import clsx from "clsx";
 import ErrorMessage from "../../../components/ErrorMessage";
 import CompetitionItemSkeleton from "../../../components/CompetitionItem/skeleton";
+import {selectCompetition} from "../../../store/selectors/competition";
 
 
 const containerPY = media(15, 20);
@@ -39,7 +39,7 @@ const Participations = () => {
     const styles = useStyles();
     const router = useRouter();
     const dispatch = useDispatch();
-    const adminState = useSelector(selectAdmin);
+    const competitionState = useSelector(selectCompetition);
 
     useEffect(() => {
         if(!router.isReady) return;
@@ -47,15 +47,15 @@ const Participations = () => {
     }, [router.isReady, router.query.id]);
 
     const outParticipations = () => {
-        if(adminState.participationsLoaded){
-            if(adminState.participationsError){
+        if(competitionState.participationsLoaded){
+            if(competitionState.participationsError){
                 return (
-                    <ErrorMessage message={adminState.participationsError} />
+                    <ErrorMessage message={competitionState.participationsError} />
                 )
             }
-            if(adminState.participations.length){
-                return adminState.participations.map((elem) => (
-                    <ParticipationItem item={elem} key={elem.id} />
+            if(competitionState.participations.length){
+                return competitionState.participations.map((elem, i) => (
+                    <ParticipationItem item={elem} place={i + 1} key={elem.id} />
                 ));
             }
             return (
@@ -70,12 +70,12 @@ const Participations = () => {
     const outGridClasses = useMemo(() => {
         return {
             single: (
-                adminState.participationsLoaded &&
-                !adminState.participationsError &&
-                adminState.participations.length === 0
-            ) || (adminState.participationsLoaded && adminState.participationsError)
+                competitionState.participationsLoaded &&
+                !competitionState.participationsError &&
+                competitionState.participations.length === 0
+            ) || (competitionState.participationsLoaded && competitionState.participationsError)
         }
-    }, [adminState.participationsLoaded, adminState.participationsError, adminState.participations]);
+    }, [competitionState.participationsLoaded, competitionState.participationsError, competitionState.participations]);
 
     return (
         <Container maxWidth="lg">

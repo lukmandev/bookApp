@@ -77,7 +77,7 @@ const CompetitionItem = ({item, isAvailable, showDate, handleStartTest, buttonTe
                         variant="contained"
                         className={clsx(muiStyles.questionCountBtn, muiStyles.button)}
                     >
-                        {item.questions_count} суроо
+                        <span className="poppins">{item.questions_count}</span>&nbsp;суроо
                     </Button>
                     <Button
                         onClick={handleStartTest}
@@ -93,7 +93,7 @@ const CompetitionItem = ({item, isAvailable, showDate, handleStartTest, buttonTe
                     </Typography>
                 ) : null}
                 {isAvailable ? (
-                    item.participation ? (
+                    item.participated ? (
                         <LockOutlinedIcon className={muiStyles.lockIcon} />
                     ) : null
                 ) : <LockOutlinedIcon className={muiStyles.lockIcon} />}

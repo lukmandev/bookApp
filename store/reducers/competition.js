@@ -2,9 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import {competitionsTabs} from "../../constants/main";
 
 const initialState = {
-    userCompetitions: null,
-    userCompetitionsLoaded: false,
-    userCompetitionsError: null,
     publicCompetitions: null,
     publicCompetitionsLoaded: false,
     publicCompetitionsError: null,
@@ -15,21 +12,19 @@ const initialState = {
     searchCompetitionsLoaded: false,
     searchCompetitions: null,
     searchCompetitionsError: null,
+    recommendedCompetitions: null,
+    recommendedCompetitionsLoaded: false,
+    recommendedCompetitionsError: null,
+
+    participations: null,
+    participationsLoaded: false,
+    participationsError: null,
 }
 
 const competition = createSlice({
     name: 'competition',
     initialState,
     reducers: {
-        setUserCompetitions(state, action){
-            state.userCompetitions = action.payload;
-        },
-        setUserCompetitionsLoaded(state, action){
-            state.userCompetitionsLoaded = action.payload;
-        },
-        setUserCompetitionsError(state, action){
-            state.userCompetitionsError = action.payload;
-        },
         setPublicCompetitions(state, action){
             state.publicCompetitions = action.payload;
         },
@@ -59,14 +54,30 @@ const competition = createSlice({
         },
         setSearchCompetitionsError(state, action){
             state.searchCompetitionsError = action.payload;
-        }
+        },
+        setRecommendedCompetitions(state, action){
+            state.recommendedCompetitions = action.payload;
+        },
+        setRecommendedCompetitionsError(state, action){
+            state.recommendedCompetitionsError = action.payload;
+        },
+        setRecommendedCompetitionsLoaded(state, action){
+            state.recommendedCompetitionsLoaded = action.payload;
+        },
+
+        setParticipations(state, action){
+            state.participations = action.payload;
+        },
+        setParticipationsLoaded(state, action){
+            state.participationsLoaded = action.payload;
+        },
+        setParticipationsError(state, action){
+            state.participationsError = action.payload;
+        },
     },
 });
 
 export const {
-    setUserCompetitionsLoaded,
-    setUserCompetitionsError,
-    setUserCompetitions,
     setPublicCompetitionsLoaded,
     setPublicCompetitions,
     setPublicCompetitionsError,
@@ -76,6 +87,13 @@ export const {
     setSelectedTab,
     setSearchCompetitions,
     setSearchCompetitionsError,
-    setSearchCompetitionsLoaded
+    setSearchCompetitionsLoaded,
+    setRecommendedCompetitionsLoaded,
+    setRecommendedCompetitions,
+    setRecommendedCompetitionsError,
+
+    setParticipationsLoaded,
+    setParticipations,
+    setParticipationsError
 } = competition.actions;
 export default competition.reducer;

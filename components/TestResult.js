@@ -104,7 +104,12 @@ const TestResult = () => {
 
 
     const handleFinishTest = () => {
-        router.push(PAGES_PATH[PAGES_ID.INDEX]);
+        router.push({
+            pathname: PAGES_PATH[PAGES_ID.COMPETITION_RESULT],
+            query: {
+                id: state.competition.detailCompetition.id
+            }
+        });
     }
 
     return (
@@ -158,7 +163,7 @@ const TestResult = () => {
                 </Box>
             </Box>
             <Button onClick={handleFinishTest} variant="contained" className={styles.finishTestBtn}>
-                Тестти бутуруу
+                Тестти аяктайм
             </Button>
         </Container>
     )

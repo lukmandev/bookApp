@@ -1,13 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import authApi from "../http/authApi";
 import {
-    setDetailCompetition, setDetailCompetitionError, setDetailCompetitionLoaded,
+    setDetailCompetition,
+    setDetailCompetitionError,
+    setDetailCompetitionLoaded, setParticipations, setParticipationsError, setParticipationsLoaded,
     setPublicCompetitions,
     setPublicCompetitionsError,
-    setPublicCompetitionsLoaded, setSearchCompetitions, setSearchCompetitionsError, setSearchCompetitionsLoaded,
-    setUserCompetitions,
-    setUserCompetitionsError,
-    setUserCompetitionsLoaded
+    setPublicCompetitionsLoaded, setRecommendedCompetitions, setRecommendedCompetitionsError,
+    setRecommendedCompetitionsLoaded,
+    setSearchCompetitions,
+    setSearchCompetitionsError,
+    setSearchCompetitionsLoaded,
 } from "../store/reducers/competition";
 import {authErrors, competitionErrors} from "../constants/errors";
 import {
@@ -19,21 +22,6 @@ import {
     setParticipationUpdateSuccess,
 } from "../store/reducers/test";
 
-
-export const getUserCompetitions = createAsyncThunk(
-    'competition/user/',
-    async (_, {dispatch}) => {
-        dispatch(setUserCompetitionsLoaded(false));
-        try {
-            const {data} = await authApi.get('/competition/mine/');
-            dispatch(setUserCompetitions(data));
-        } catch (e) {
-            dispatch(setUserCompetitionsError(authErrors['ERROR_500']));
-        } finally {
-            dispatch(setUserCompetitionsLoaded(true));
-        }
-    }
-);
 
 
 export const getDetailCompetition = createAsyncThunk(
@@ -128,6 +116,39 @@ export const fetchCompetitionBySearch = createAsyncThunk(
             dispatch(setSearchCompetitionsError(authErrors['ERROR_500']));
         } finally {
             dispatch(setSearchCompetitionsLoaded(true));
+        }
+    }
+);
+
+export const fetchRecommendedCompetition = createAsyncThunk(
+    'competition/recommended/',
+    async (query, {dispatch}) => {
+        dispatch(setRecommendedCompetitionsLoaded(false));
+        dispatch(setRecommendedCompetitionsError(null));
+        try {
+            const {data} = await authApi.get(`/competition/recommended/`);
+            dispatch(setRecommendedCompetitions(data));
+        } catch (e) {
+            dispatch(setRecommendedCompetitionsError(authErrors['ERROR_500']));
+        } finally {
+            dispatch(setRecommendedCompetitionsLoaded(true));
+        }
+    }
+);
+
+export const fetchCompetitionParticipation = createAsyncThunk(
+    'admin/competition/participation',
+    async (id, {dispatch}) => {
+        dispatch(setParticipationsLoaded(false));
+        dispatch(setParticipations(null));
+        dispatch(setParticipationsError(null));
+        try {
+            const {data} = await authApi.get(`/competition/result/${id}`);
+            dispatch(setParticipations(data));
+        } catch (e) {
+            dispatch(setParticipationsError(authErrors['ERROR_500']));
+        } finally {
+            dispatch(setParticipationsLoaded(true));
         }
     }
 );

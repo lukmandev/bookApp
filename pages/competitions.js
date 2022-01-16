@@ -2,7 +2,7 @@ import MainLayout from "../layouts/Main";
 import {Box, Container, Tab, Tabs} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCompetition} from "../store/selectors/competition";
-import {competitionsTabs, gridWrapperStyles} from "../constants/main";
+import {competitionsTabs, gridWrapperStyles, PAGES_ID, PAGES_PATH} from "../constants/main";
 import {setSelectedTab} from "../store/reducers/competition";
 import {makeStyles} from "@mui/styles";
 import {media} from "../utils/media";
@@ -13,6 +13,8 @@ import CompetitionItem from "../components/CompetitionItem";
 import CompetitionItemSkeleton from "../components/CompetitionItem/skeleton";
 import ErrorMessage from "../components/ErrorMessage";
 import {setModalActive} from "../store/reducers/main";
+import {useRouter} from "next/router";
+
 
 
 const containerPY = media(15, 20);
@@ -64,6 +66,7 @@ const useStyles = makeStyles(theme => ({
 
 const Competitions = () => {
     const styles = useStyles();
+    const router = useRouter();
     const dispatch = useDispatch();
     const competitionState = useSelector(selectCompetition);
 
@@ -98,11 +101,27 @@ const Competitions = () => {
             }
             if(competitionState.publicCompetitions.length){
                 return competitionState.publicCompetitions.map((elem) => (
-                    <CompetitionItem showDate={true} handleStartTest={() => {
-                        if(!elem.is_bought){
-                            dispatch(setModalActive(true));
-                        }
-                    }} item={elem} key={elem.id} buttonText="Тест тапшыруу" />
+                    <CompetitionItem
+                        showDate={true}
+                        handleStartTest={() => {
+                            if(!elem.is_bought){
+                                dispatch(setModalActive(true));
+                                return;
+                            }
+                            if(elem.is_bought && !elem.participated && elem.is_started){
+                               router.push({
+                                   pathname: PAGES_PATH[PAGES_ID.DETAIL_COMPETITION],
+                                   query: {
+                                       id: elem.id
+                                   }
+                               })
+                            }
+                        }}
+                        item={elem}
+                        key={elem.id}
+                        buttonText="Тест тапшыруу"
+                        isAvailable={!!(elem.is_bought && !elem.participated && elem.is_started)}
+                    />
                 ));
             }
             return (

@@ -10,6 +10,7 @@ import {setLoading} from "../../store/reducers/main";
 import {Box, Typography} from "@mui/material";
 import {media} from "../../utils/media";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import ErrorMessage from "../../components/ErrorMessage";
 
 
 const Competition = () => {
@@ -37,22 +38,7 @@ const Competition = () => {
         if(competitionState.detailCompetitionLoaded){
             if(competitionState.detailCompetitionError){
                 return (
-                    <Box sx={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: `${media(20, 30)} ${media(10, 15)}`,
-                    }}>
-                        <SentimentVeryDissatisfiedIcon sx={{
-                            fontSize: media(55, 70),
-                            color: 'primary.main',
-                        }} />
-                        <Typography sx={{mt: media(4, 6)}} textAlign="center" fontWeight="400" fontSize={media(20, 25)} color="quaternary">
-                            {competitionState.detailCompetitionError}
-                        </Typography>
-                    </Box>
+                    <ErrorMessage message={competitionState.detailCompetitionError} />
                 )
             }
             return <DetailCompetition info={competitionState.detailCompetition} />

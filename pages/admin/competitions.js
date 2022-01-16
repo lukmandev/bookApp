@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/Main";
 import AdminLayout from "../../layouts/Admin";
 import {media} from "../../utils/media";
 import {makeStyles} from "@mui/styles";
-import {gridWrapperStyles} from "../../constants/main";
+import {gridWrapperStyles, PAGES_ID, PAGES_PATH} from "../../constants/main";
 import clsx from "clsx";
 import {useEffect, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -56,7 +56,7 @@ const AdminCompetitions = () => {
                 return adminState.competitions.map((elem) => (
                     <CompetitionItem key={elem.id} buttonText="Результаттар" isAvailable={true} item={elem} handleStartTest={() => {
                         router.push({
-                            pathname: '/admin/competition/[id]',
+                            pathname: PAGES_PATH[PAGES_ID.COMPETITION_RESULT],
                             query: {
                                 id: elem.id,
                             }

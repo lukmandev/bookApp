@@ -110,13 +110,18 @@ const DetailCompetition = ({info}) => {
                     <Typography sx={{pt: media(4, 7), pb: media(9, 12)}} textAlign="center" color="#838383" fontWeight="400" fontSize={media(13, 15)}>
                         Автор: {info.book.author}
                     </Typography>
-                    <Button sx={{minWidth: media(130, 180)}} className={clsx(styles.button, styles.questionCount)} variant="contained">{info.questions.length} суроо</Button>
+                    <Button sx={{minWidth: media(130, 180)}} className={clsx(styles.button, styles.questionCount)} variant="contained">
+                        <span className="poppins">
+                            {info.questions.length}&nbsp;
+                        </span>
+                        суроо
+                    </Button>
                 </Box>
             </Box>
             <Box className={styles.rightColumn}>
                 <Typography textAlign="center" fontSize={media(20, 24)} fontWeight="600" color="quaternary">
-                    Конкурс катталуудан мурун бул эрежени
-                    эске алыңызды суранабыз!
+                    Конкурсту баштоодон алдында,
+                    бул эреже менен таанышып алыңыз!
                 </Typography>
                 <List className={styles.list}>
                     {competitionRules.map((elem, i) => (
@@ -136,7 +141,7 @@ const DetailCompetition = ({info}) => {
                     ))}
                 </List>
                 <Button onClick={startCompetition} variant="contained" className={clsx(styles.button, styles.startTestButton)}>
-                    {info.participation ? "Сиз бул конкурста уже катышкансыз" : "Тестти баштоо"}
+                    {info.participation ? "Сиз бул конкурста уже катышкансыз" : "Тестти баштайм"}
                 </Button>
             </Box>
         </Container>
