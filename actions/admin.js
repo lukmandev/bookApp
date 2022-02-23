@@ -1,6 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import authApi from "../http/authApi";
 import {
+    setBooks,
+    setBooksError,
+    setBooksLoaded,
     setCompetitions,
     setCompetitionsError,
     setCompetitionsLoaded,
@@ -35,7 +38,7 @@ export const bulkCreateUsers = createAsyncThunk(
         try {
             const {data} = await authApi.post('/users/bulk-create/', body);
             result.isSuccess = true;
-            result.data = data.emailError ? data.emails : "Пользовательдер кошулду";
+            result.data = "Пользовательдер кошулду";
         } catch (e) {
             result.data = "Ката кетип калды";
         }
@@ -43,3 +46,20 @@ export const bulkCreateUsers = createAsyncThunk(
     }
 );
 
+
+export const fetchAllBooks = createAsyncThunk(
+    'admin/books',
+    async (_, {dispatch}) => {
+        dispatch(setBooksLoaded(false));
+        dispatch(setBooksError(null));
+        dispatch(setBooks(null));
+        try {
+            const {data} = await authApi.get('/books/all/');
+            dispatch(setBooks(data));
+        } catch (e){
+            dispatch(setBooksError(authErrors['ERROR_500']));
+        } finally {
+            dispatch(setBooksLoaded(true));
+        }
+    }
+)

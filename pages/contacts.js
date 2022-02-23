@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     mainImage: {
-        maxWidth: media(300, 500),
+        maxWidth: media(270, 500),
         width: '100%',
         '@media (max-width: 1000px)': {
             justifySelf: 'center',
@@ -61,8 +61,7 @@ const Contacts = () => {
             <img src={require('../assets/images/contacts.svg')} className={styles.mainImage} />
             <Box className={styles.contentHolder}>
                 <Typography textAlign="left" marginBottom={media(20, 30)} fontSize={media(24, 28)} fontWeight="600" color="quaternary">
-                    Сурооңуз болсо төмөндөгү
-                    номерлерге байланышыңыз!
+                    Сурооңуз болсо, төмөнкү номерлерге байланышыңыз!
                 </Typography>
                 <List>
                     {contactsList.map((elem, i) => (

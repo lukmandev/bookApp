@@ -47,10 +47,10 @@ const CompetitionRegister = () => {
                 >
                     {(formik) => (
                         <form className={styles.form} onSubmit={formik.handleSubmit}>
-                            <TextInput name="fullname" label="Аты жонунуз" />
+                            <TextInput name="fullname" label="Аты-жөнүңүз" />
                             <TextInput
                                 name="phone"
-                                label="Телефон номериниз"
+                                label="Сиздин телефон номериңиз"
                                 type="phone"
                             />
                             <LoadingButton

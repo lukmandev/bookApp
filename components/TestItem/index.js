@@ -173,7 +173,7 @@ const Question = () => {
 
     return (
         <Container className={styles.container} maxWidth="md">
-            <Button variant="contained" className={styles.questionIndex}>1 суроо</Button>
+            <Button variant="contained" className={styles.questionIndex}>{testState.currentQuestion + 1} суроо</Button>
             {outCountdown}
             {currentQuestion.helperTitle ? (
                 <Typography textAlign="center" fontSize={media(12, 14)} fontWeight="400" color="quaternary">

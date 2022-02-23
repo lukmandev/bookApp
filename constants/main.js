@@ -119,7 +119,7 @@ export const competitionsTabs = [
         path: '/competition/public/soon/',
     },
     {
-        title: "Сиз катыша ала турган конкурстар",
+        title: "Учурда болуп жаткан конкурстар",
         id: 1,
         path: '/competition/mine/',
     },
@@ -150,22 +150,22 @@ export const imageSkeleton = require('../assets/images/avatar.png');
 
 export const contactsList = [
     {
-        title: "+996 700 12 13 15",
+        title: "1234567890",
         icon: WhatsAppIcon,
         color: '#1ED400',
-        link: 'https://wa.me/0706048466',
+        link: '',
     },
     {
-        title: "+996 700 12 13 15",
+        title: "1234567890",
         icon: TelegramIcon,
         color: '#0090CD',
-        link: 'https://t.me/username',
+        link: '',
     },
     {
-        title: "+996 700 12 13 15",
+        title: "1234567890",
         icon: PhoneOutlinedIcon,
         color: '#009DCE',
-        link: 'tel:+996700121315'
+        link: ''
     }
 ]
 

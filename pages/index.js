@@ -289,11 +289,11 @@ const Home = () => {
             <Container maxWidth="lg" className={styles.personContainer}>
                 <Typography textAlign="center" component="h1" fontSize={media(25, 32)} fontWeight="700" color="primary">ДОЛБОРДУН МИССИЯСЫ</Typography>
                 <Box className={styles.personBox}>
-                    <img src={require('../assets/images/person.png')} className={styles.personImg} />
+                    <img src={require('../assets/images/main-image.jpg')} className={styles.personImg} />
                     <Typography component="p" fontSize={media(14, 16)} fontWeight="400" className={clsx('poppins', styles.personTitle)}>
                         “Кел, окуйбуз” долбоорунун миссиясы - жалпы элди
                         китеп окууга кызыктыруу менен, адамдын жашоосун
-                        өзгөртүүгө түздөн-түз таасир эткен түшүнүктөрдү жеткирүү.
+                        өзгөртүүгө түздөн-түз таасир эткен түшүнүктөрдү жеткирүү
                     </Typography>
                 </Box>
             </Container>

@@ -20,12 +20,10 @@ import {
     setTestEnded,
     setTestStarted
 } from "../../store/reducers/test";
-import {media} from "../../utils/media";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import {Box, Typography} from "@mui/material";
 import {participationUpdate, setParticipation} from "../../actions/competition";
 import TestResult from "../../components/TestResult";
 import {selectAllState} from "../../store/selectors/main";
+import ErrorMessage from "../../components/ErrorMessage";
 
 
 const StartTestPage = () => {
@@ -118,22 +116,7 @@ const StartTestPage = () => {
         if(testState.participationInfoLoaded){
             if(testState.participationError){
                 return (
-                    <Box sx={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: `${media(20, 30)} ${media(10, 15)}`,
-                    }}>
-                        <SentimentVeryDissatisfiedIcon sx={{
-                            fontSize: media(55, 70),
-                            color: 'primary.main',
-                        }} />
-                        <Typography sx={{mt: media(4, 6)}} textAlign="center" fontWeight="400" fontSize={media(20, 25)} color="quaternary">
-                            {testState.participationError}
-                        </Typography>
-                    </Box>
+                    <ErrorMessage message={testState.participationError} />
                 )
             }
             if(testState.participationIsSuccess && testState.testStarted && !testState.testEnded){
@@ -143,22 +126,7 @@ const StartTestPage = () => {
                 if(testState.participationUpdateInfoLoaded){
                     if(testState.participationUpdateError){
                         return (
-                            <Box sx={{
-                                width: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: `${media(20, 30)} ${media(10, 15)}`,
-                            }}>
-                                <SentimentVeryDissatisfiedIcon sx={{
-                                    fontSize: media(55, 70),
-                                    color: 'primary.main',
-                                }} />
-                                <Typography sx={{mt: media(4, 6)}} textAlign="center" fontWeight="400" fontSize={media(20, 25)} color="quaternary">
-                                    {testState.participationUpdateError}
-                                </Typography>
-                            </Box>
+                            <ErrorMessage message={testState.participationUpdateError} />
                         )
                     }
                     return <TestResult />

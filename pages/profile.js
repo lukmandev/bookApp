@@ -91,7 +91,7 @@ const Profile = () => {
                         <ProfileInput label="Аты жонунуз" StartIcon={AccountCircleOutlined} name="fullname" />
                         <ProfileInput label="Сиздин телефон номериниз" StartIcon={LocalPhoneOutlined} name="phone" />
                         <LoadingButton loading={formik.isSubmitting} variant="contained" type="submit" className={styles.button}>
-                            {compareFormValues(initialValues, formik.values).isChanged ? "Сактоо" : "Озгортунуз"}
+                            {compareFormValues(initialValues, formik.values).isChanged ? "Сактайм" : "Өзгөртөм"}
                         </LoadingButton>
                         {formik.status ? (
                             <Typography fontSize={media(14, 16)} fontWeight="500" color="primary">
@@ -105,12 +105,12 @@ const Profile = () => {
                 <>
                     <NextLink href="/admin/competitions">
                         <MuiLink sx={{cursor: 'pointer'}} marginTop={media(12, 17)} underline="none" fontSize={media(14, 16)} fontWeight="600" color="primary">
-                            Конкурстардын результатарын коруу
+                            Конкурстун жыйынтыгын көрөм
                         </MuiLink>
                     </NextLink>
                     <NextLink href="/admin/add-users">
                         <MuiLink sx={{cursor: 'pointer'}} marginTop={media(12, 17)} underline="none" fontSize={media(14, 16)} fontWeight="600" color="primary">
-                            Коп катышуучу кошуу
+                            Катышуучуларды кошом
                         </MuiLink>
                     </NextLink>
                 </>

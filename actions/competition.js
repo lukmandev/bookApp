@@ -29,7 +29,7 @@ export const getDetailCompetition = createAsyncThunk(
     async (id, {dispatch}) => {
         dispatch(setDetailCompetitionLoaded(false));
         try {
-            const {data} = await authApi.get(`/competition/mine/${id}`);
+            const {data} = await authApi.get(`/competition/mine/${id}/`);
             dispatch(setDetailCompetition(data));
         } catch (e) {
             if(e.response){
@@ -143,7 +143,7 @@ export const fetchCompetitionParticipation = createAsyncThunk(
         dispatch(setParticipations(null));
         dispatch(setParticipationsError(null));
         try {
-            const {data} = await authApi.get(`/competition/result/${id}`);
+            const {data} = await authApi.get(`/competition/result/${id}/`);
             dispatch(setParticipations(data));
         } catch (e) {
             dispatch(setParticipationsError(authErrors['ERROR_500']));
